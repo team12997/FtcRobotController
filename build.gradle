@@ -10,8 +10,10 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        //may need to change back to 7.2.0
+        classpath 'com.android.tools.build:gradle:7.2.2'
     }
+
 }
 
 // This is now required because aapt2 has to be downloaded from the
@@ -29,4 +31,6 @@ repositories {
     flatDir {
         dirs '../libs'
     }
+
+
 }
