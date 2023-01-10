@@ -20,10 +20,10 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
     
-    private DcMotor leftFront = hardwareMap.dcMotor.get("leftFrontMotor");
-    private DcMotor rightFront = hardwareMap.dcMotor.get("rightFrontMotor");
-    private DcMotor leftBack = hardwareMap.dcMotor.get("leftBackMotor");
-    private DcMotor rightBack = hardwareMap.dcMotor.get("rightBackMotor");
+    private DcMotor leftFront;
+    private DcMotor rightFront;
+    private DcMotor leftBack;
+    private DcMotor rightBack;
     
  
     static final double FEET_PER_METER = 3.28084;
@@ -50,6 +50,15 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
     @Override
     public void runOpMode()
     {
+        leftFront = hardwareMap.dcMotor.get("leftFrontMotor");
+        leftBack = hardwareMap.dcMotor.get("leftBackMotor");
+        rightFront = hardwareMap.dcMotor.get("rightFrontMotor");
+        rightBack = hardwareMap.dcMotor.get("rightBackMotor");
+
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
+        leftBack.setDirection(DcMotor.Direction.REVERSE);
+        rightFront.setDirection(DcMotor.Direction.FORWARD);
+        rightBack.setDirection(DcMotor.Direction.FORWARD);
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
